@@ -31,7 +31,7 @@ public class Model {
 		
 		Graphs.addAllVertices(this.grafo, vertici);
 		
-		this.archi = dao.getAdiacenza();
+		this.archi = dao.getAdiacenza(ruolo);
 		
 		for (Adiacenza a : archi) {
 			if (a.getA1() != null && a.getA2() != null) {

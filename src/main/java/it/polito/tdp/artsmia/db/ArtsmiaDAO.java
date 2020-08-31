@@ -117,10 +117,12 @@ public class ArtsmiaDAO {
 		}
 	}
 	
-	public List <Adiacenza> getAdiacenza () {
+	public List <Adiacenza> getAdiacenza (String ruolo) {
 		String sql = "SELECT DISTINCT a1.artist_id AS artista1, a2.artist_id AS artista2, COUNT(DISTINCT(e1.exhibition_id)) AS peso " + 
 				"FROM authorship a1, authorship a2, objects o1, objects o2, exhibition_objects e1, exhibition_objects e2 " + 
 				"WHERE a1.artist_id > a2.artist_id " + 
+				"AND a1.role = ? " + 
+				"AND a2.role = ? " +
 				"AND a1.object_id = o1.object_id " + 
 				"AND a2.object_id = o2.object_id " + 
 				"AND o1.object_id <> o2.object_id " + 
@@ -135,6 +137,8 @@ public class ArtsmiaDAO {
 		try {
 			Connection conn = DBConnect.getConnection();
 			PreparedStatement st = conn.prepareStatement(sql);
+			st.setString(1, ruolo);
+			st.setString(2, ruolo);
 			ResultSet res = st.executeQuery();
 			
 			while (res.next()) {
