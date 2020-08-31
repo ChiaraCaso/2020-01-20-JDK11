@@ -46,8 +46,18 @@ public class ArtsmiaController {
     void doArtistiConnessi(ActionEvent event) {
 
     	txtResult.clear();
+    	String ruolo = boxRuolo.getValue();
     	
-    	txtResult.appendText("COPPIE DI ARTISTI ED ESPOSIZIONI COMUNI: \n" + this.model.getConnessi()+"\n");
+    	if(ruolo==null) {
+        	txtResult.appendText("Seleziona un ruolo e crea il grafo!\n");
+        	return ;
+    	}
+    	List<Adiacenza> archi=this.model.getConnessi();
+    	
+    	for(Adiacenza a: archi) {
+    		txtResult.appendText(a.toString()+"\n");
+    	}
+    	
     }
 
     @FXML

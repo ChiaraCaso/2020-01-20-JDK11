@@ -54,12 +54,6 @@ public class Model {
 	}
 	
 	public List<Adiacenza> getConnessi () {
-		List <Adiacenza> result = new ArrayList<Adiacenza>();
-		
-		for (Adiacenza a : archi) {
-			result.add(a);
-		}
-		
-		return result;
+		return archi;
 	}
 }
