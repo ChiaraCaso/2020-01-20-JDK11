@@ -45,6 +45,9 @@ public class ArtsmiaController {
     @FXML
     void doArtistiConnessi(ActionEvent event) {
 
+    	txtResult.clear();
+    	
+    	txtResult.appendText("COPPIE DI ARTISTI ED ESPOSIZIONI COMUNI: \n" + this.model.getConnessi()+"\n");
     }
 
     @FXML
@@ -55,11 +58,25 @@ public class ArtsmiaController {
     @FXML
     void doCreaGrafo(ActionEvent event) {
     	
+    	txtResult.clear();
+    	
+    	String ruolo = boxRuolo.getValue();
+    	
+    	if (ruolo == null) {
+    		txtResult.appendText("Selezionare un ruolo!");
+    		return;
+    	}
+    	
+    	this.model.creaGrafo(ruolo);
+    	txtResult.appendText("GRAFO CREATO! \n");
+    	txtResult.appendText("#VERTICI: "+this.model.nVertici()+"\n");
+    	txtResult.appendText("#ARCHI: "+this.model.nArchi()+"\n");
+    	
     }
 
     public void setModel(Model model) {
     	this.model = model;
-    	
+    	boxRuolo.getItems().addAll(this.model.getRuoli());
     }
 
     

@@ -35,6 +35,10 @@ public class Adiacenza implements Comparable <Adiacenza> {
 		
 		return -this.peso.compareTo(o.peso);
 	}
+	@Override
+	public String toString() {
+		return  a1 + ", " + a2 + " - " + peso + "\n";
+	}
 	
 	
 }
